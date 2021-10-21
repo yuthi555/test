@@ -1,0 +1,22 @@
+---
+serverinventory:
+{% for item in csvfile.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+  - Environment: '{{ list[0]|trim() }}'
+    CI: '{{ list[1]|trim() }}'
+    Release_date: '{{ list[2]|trim() }}'
+    Affected_CIs: '{{ list[3]|trim() }}'
+    Short_Description: '{{ list[4]|trim() }}'
+    Category: '{{ list[5]|trim() }}'
+    Assigned_Group: '{{ list[6]|trim() }}'
+    Assigned_To: '{{ list[7]|trim() }}'
+    Change_Coordinator: '{{ list[8]|trim() }}'
+    Technical_Approver: '{{ list[9]|trim() }}'
+    Patching_Type: '{{ list[10]|trim() }}'
+    Implemention_Plan: '{{ list[11]|trim() }}'
+    BackoutPlan: '{{ list[12]|trim() }}'
+    ValidationPlan: '{{ list[13]|trim() }}'
+  
+{%   endif %}
+{% endfor %}

@@ -1,0 +1,52 @@
+---
+- gather_facts: false
+  hosts: localhost
+  vars_files:
+    - Server_Inventory_hosts.yml
+  tasks:
+  - name: Create a change ticket in SNOW
+    snow_record:
+      data:
+        u_environment: "{{item.Environment}}"
+        cmdb_ci: "{{item.CI}}"
+        start_date: "{{item.Release_date}}"
+        short_description: "{{item.Short_Description}}"
+        category: "{{item.Category}}"
+        assignment_group: "{{item.Assigned_Group}}"
+        assigned_to: "{{item.Assigned_To}}"
+        u_change_coordinator: "{{item.Change_Coordinator}}"
+        u_technical_approver: "{{item.Technical_Approver}}"
+        type: "{{item.Patching_Type}}"
+        implementation_plan: "{{item.Implemention_Plan}}"
+        backout_plan: "{{item.BackoutPlan}}"
+        test_plan: "{{item.ValidationPlan}}"
+        requested_by: Abel Tuter
+        description: '2021| NON PROD Q3 Linux Patching QA'
+        u_director_approval: '.Caitlin Reiniger'
+        u_product_approval: '.Abraham Lincoln'
+        u_sr_director_approval: '.Adela Cervantsz'
+        u_vp_approval: '.Barbara Hindley'
+      instance: dev57831
+      password: Swiftdzire@0587
+      state: present
+      table: change_request
+      username: admin
+    with_items:
+        - "{{ serverinventory }}"
+    register: new_change_request
+  - debug:
+      msg: "New change has been created : {{ new_change.record.number }} "
+  - name: test change
+    snow_record:
+      username: admin
+      password: pEsl3S8PuBgU
+      instance: dev119884
+      state: present
+      table: change_task
+      data:
+        short_description: "This is the task ticket from ansible"
+        description: '2021| NON PROD Q3 Linux Patching QA'
+        change_request: "{{ new_change.record.number }}"
+    register: new_change_task
+  - debug:
+      msg: "New change has been created : {{ new_change_task.record.number }} "

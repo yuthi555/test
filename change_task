@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  gather_facts: False
+  tasks:
+  - name: Create a ticket
+    snow_record:
+      username: admin
+      password: Welsnow321#
+      instance: dev73962
+      state: present
+      table: change_request
+      data:
+        short_description: "Unix change created from ansible 03/03"
+        requested_by: "System Administrator"
+    register: new_change
+  - debug:
+      msg: "New change has been created : {{ new_change.record.number }} "
+  - name: test change
+    snow_record:
+      username: admin
+      password: pEsl3S8PuBgU
+      instance: dev119884
+      state: present
+      table: change_task
+      data:
+        short_description: "This is the task ticket from ansible"
+        description: '2021| NON PROD Q3 Linux Patching QA'
+        change_request: "{{ new_change.record.number }}"
+    register: new_change_task
+  - debug:
+      msg: "New change has been created : {{ new_change_task.record.number }} "
