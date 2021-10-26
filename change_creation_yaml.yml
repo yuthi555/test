@@ -5,6 +5,7 @@
     - Server_Inventory_hosts.yml
   tasks:
   - name: Create a change ticket in SNOW
+    register: new_change_request
     snow_record:
       data:
         u_environment: "{{item.Environment}}"
@@ -26,7 +27,6 @@
       username: admin
     with_items:
         - "{{ serverinventory }}"
-    register: new_change_request
   - debug:
       msg: "New change has been created : {{ new_change.record.number }} "
   - name: test change
