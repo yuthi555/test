@@ -4,7 +4,7 @@
   vars_files:
     - Server_Inventory_hosts.yml
   tasks:
-  - name: Create a change ticket in SNOW
+  - name: Create a change ticket in SNOW 
     register: new_change_request
     snow_record:
       data:
@@ -25,19 +25,7 @@
       state: present
       table: change_request
       username: admin
-  - debug:
-      msg: "New change has been created : {{ new_change.record.number }} "
-  - name: test change
-    snow_record:
-      username: admin
-      password: pEsl3S8PuBgU
-      instance: dev119884
-      state: present
-      table: change_task
-      data:
-        short_description: "This is the task ticket from ansible"
-        description: '2021| NON PROD Q3 Linux Patching QA'
-        change_request: "{{ new_change.record.number }}"
-    register: new_change_task
-  - debug:
-      msg: "New change has been created : {{ new_change_task.record.number }} "
+    with_items:
+        - "{{ serverinventory }}"
+#    register: new_change_request
+#- debug: var=new_change_request.record.number
