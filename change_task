@@ -5,8 +5,8 @@
   - name: Create a ticket
     snow_record:
       username: admin
-      password: Welsnow321#
-      instance: dev73962
+      password: pEsl3S8PuBgU
+      instance: dev119884
       state: present
       table: change_request
       data:
