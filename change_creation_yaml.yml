@@ -19,7 +19,7 @@
         backout_plan: "{{item.BackoutPlan}}"
         u_validationplan: "{{item.ValidationPlan}}"
         requested_by: Abel Tuter
-        description: '2021| NON PROD Q3 Linux Patching QA'
+        description: 'PRM CHANGE CREATION'
       instance: dev119884
       password: pEsl3S8PuBgU
       state: present
