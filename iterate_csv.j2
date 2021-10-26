@@ -1,7 +1,7 @@
 ---
 serverinventory:
 {% for item in csvfile.split("\n") %}
-{%   if loop.index != 1 %}
+{%   if loop.index != 0 %}
 {%     set list = item.split(",") %}
   - Environment: '{{ list[0]|trim() }}'
     CI: '{{ list[1]|trim() }}'
