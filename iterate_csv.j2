@@ -5,14 +5,15 @@ serverinventory:
 {%     set list = item.split(",") %}
   - Environment: '{{ list[0]|trim() }}'
     CI: '{{ list[1]|trim() }}'
-    Release_date: '{{ list[2]|trim() }}'
-    Short_Description: '{{ list[3]|trim() }}'
-    Category: '{{ list[4]|trim() }}'
-    Assigned_Group: '{{ list[5]|trim() }}'
-    Assigned_To: '{{ list[6]|trim() }}'
-    Implemention_Plan: '{{ list[7]|trim() }}'
-    BackoutPlan: '{{ list[8]|trim() }}'
-    ValidationPlan: '{{ list[9]|trim() }}'
+    start_date: '{{ list[2]|trim() }}'
+    end_date: '{{ list[3]|trim() }}'
+    Short_Description: '{{ list[4]|trim() }}'
+    Category: '{{ list[5]|trim() }}'
+    Assigned_Group: '{{ list[6]|trim() }}'
+    Assigned_To: '{{ list[7]|trim() }}'
+    Implemention_Plan: '{{ list[8]|trim() }}'
+    BackoutPlan: '{{ list[9]|trim() }}'
+    ValidationPlan: '{{ list[10]|trim() }}'
   
 {%   endif %}
 {% endfor %}
