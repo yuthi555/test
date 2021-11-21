@@ -10,15 +10,14 @@
       data:
         u_environment: "{{item.Environment}}"
         cmdb_ci: "{{item.CI}}"
-        start_date: "{{item.Release_date}}"
+        start_date: "{{item.start_date}}"
+        end_date: "{{item.end_date}}"
         short_description: "{{item.Short_Description}}"
         category: "{{item.Category}}"
         assignment_group: "{{item.Assigned_Group}}"
         assigned_to: "{{item.Assigned_To}}"
         implementation_plan: "{{item.Implemention_Plan}}"
         backout_plan: "{{item.BackoutPlan}}"
-        u_validationplan: "{{item.ValidationPlan}}"
-        requested_by: Abel Tuter
         description: 'PRM CHANGE CREATION'
       instance: dev112400
       password: uM2YBSyKpdn1
